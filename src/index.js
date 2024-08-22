@@ -41,11 +41,14 @@ function decode(expr) {
   const obj = MORSE_TABLE;
   let result = [];
   const exprSize = expr.length / 10 - 1;
-  for (let i = 0; i <= Math.ceil(exprSize - 1); i++) {
-    console.log(exprSize);
-    result[i] = expr.slice(i * exprSize, i * exprSize + exprSize);
+  for (let i = 0; i <= Math.ceil(exprSize); i++) {
+    result[i] = expr.slice(i * exprSize, i * exprSize + exprSize);    
   }
-  return result;
+  for (let key of result) {
+    console.log(key)
+  }
+  return result
+ 
 }
 
 module.exports = {
