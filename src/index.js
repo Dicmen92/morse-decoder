@@ -40,26 +40,25 @@ const MORSE_TABLE = {
 function decode(expr) {
   const obj = MORSE_TABLE;
   let result = [];
+  let resultKey = []
   const exprSize = expr.length / 10 - 1;
   for (let i = 0; i <= Math.ceil(exprSize); i++) {
-    result[i] = expr.slice(i * exprSize, i * exprSize + exprSize);    
-  }
+    result[i] = expr.split('').slice(i * exprSize, i * exprSize + exprSize);    
+  } 
   for (let key of result) {
-    console.log(key)
+    key.forEach((val, i) => console.log(val + 'строка №' + i)) 
   }
-  return result
- 
 }
 
 module.exports = {
   decode,
 };
 
-console.log(
+
   decode(
     "00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010"
   )
-);
+
 
 // const expr = "00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010";
 // const result = "hello world";
