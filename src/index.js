@@ -41,13 +41,11 @@ function decode(expr) {
   const obj = MORSE_TABLE;
   let result = [];
   let resultKey = []
-  const exprSize = expr.length / 10 - 1;
-  for (let i = 0; i <= Math.ceil(exprSize); i++) {
-    result[i] = expr.split('').slice(i * exprSize, i * exprSize + exprSize);    
+  const exprSize = expr.length / 10 - 1;  
+  for (let i = 0; i <= Math.ceil(exprSize); i++) {  
+    result.push(expr.slice(i * 10, i * 10 + 10));
   } 
-  for (let key of result) {
-    key.forEach((val, i) => console.log(val + 'строка №' + i)) 
-  }
+  console.log(result)
 }
 
 module.exports = {
