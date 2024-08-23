@@ -43,7 +43,7 @@ function decode(expr) {
   let resultKey = []
   const exprSize = expr.length / 10 - 1;  
   for (let i = 0; i <= Math.ceil(exprSize); i++) {  
-    result.push(expr.slice(i * 10, i * 10 + 10));
+    result.push(expr.slice(i * 10, i * 10 + 10));    
   } 
   console.log(result)
 }
