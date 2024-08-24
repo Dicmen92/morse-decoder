@@ -41,13 +41,11 @@ function decode(expr) {
   const obj = MORSE_TABLE;
   let result = [];
   let resultKey = [];
+  let resultTwo = [];
   let resultMorseTable = [];
   const exprSize = expr.length / 10 - 1;
   for (let i = 0; i <= Math.ceil(exprSize); i++) {
     result.push(expr.slice(i * 10, i * 10 + 10));
-    // if (result[i].includes("**********")) {
-    //   result[i] = " ";
-    // }
     for (let j = 0; j < 5; j++) {
       resultKey.push(result[i].slice(j * 2, j * 2 + 2));
     }
@@ -56,20 +54,45 @@ function decode(expr) {
   let index = 0;
   for (let key of resultKey) {
     if (key === "00") {
-      continue;
+      resultTwo.push("00");
     } else if (key === "10") {
-      resultMorseTable.push(".");
+      resultTwo.push(".");
     } else if (key === "11") {
-      resultMorseTable.push("-");
+      resultTwo.push("-");
     } else if (key === "**") {
       index += 1;
       if (index === 4) {
-        resultMorseTable.push(" ");
+        resultTwo.push(" ");
         index = 0;
       }
     }
   }
-  console.log(resultMorseTable.join(""));
+
+  
+  for (let i = 0; i <= Math.ceil(exprSize); i++) {
+    resultMorseTable.push(resultTwo.slice(i * 5, i * 5 + 5));
+  }
+
+for (let j = 0; j < 10; j++) {
+  for (let key of resultMorseTable) {
+    for (let i = 0; i < key.length; i++) {
+      if (key[i] === '00') {
+        key.splice(i, 1);
+      }
+     }    
+  }
+}
+ 
+for (let key of resultMorseTable) {
+  console.log(key)
+}
+
+  
+
+  //delete resultMorseTable[val];
+  // console.log(resultMorseTable)
+
+  // console.log(MORSE_TABLE[`${resultMorseTable.join("")}`])
   // console.log(resultKey.join("").trim(""));
 }
 
@@ -77,12 +100,11 @@ module.exports = {
   decode,
 };
 
-const expr =
-  "00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010";
+const expr = "0000101010000000101100101010110000000010**********00000011110000000010"
 decode(expr);
 
-// const expr = "00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010";
-// const result = "hello world";
+// const expr = "0000101010000000101100101010110000000010**********00000011110000000010";
+// const result = "save me";
 
 // let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //массив, можно использовать массив объектов
 // let size = 3; //размер подмассива
