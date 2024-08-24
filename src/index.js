@@ -80,9 +80,8 @@ for (let j = 0; j < 10; j++) {
   }
 }
 
-let textWord;
 for (let key of resultMorseTable) {
-  if (key === '$$$$$') {
+  if (key.join('') === '$$$$$') {    
     console.log('daaaaaaa')
   }
   // console.log(key.join(''))
