@@ -51,7 +51,7 @@ function decode(expr) {
     }
   }
 
-  let index = 0;
+
   for (let key of resultKey) {
     if (key === "00") {
       resultTwo.push("00");
@@ -60,11 +60,7 @@ function decode(expr) {
     } else if (key === "11") {
       resultTwo.push("-");
     } else if (key === "**") {
-      index += 1;
-      if (index === 4) {
-        resultTwo.push(" ");
-        index = 0;
-      }
+      resultTwo.push("**");
     }
   }
 
@@ -73,24 +69,35 @@ function decode(expr) {
     resultMorseTable.push(resultTwo.slice(i * 5, i * 5 + 5));
   }
 
+let fix = 0;
 for (let j = 0; j < 10; j++) {
   for (let key of resultMorseTable) {
     for (let i = 0; i < key.length; i++) {
       if (key[i] === '00') {
         key.splice(i, 1);
+      } else if (key[i] === '**') {
+        fix += 1;
+        key.splice(i, 1);
+        if (fix === 5) {
+          key.splice(i, 1, ' ');
+          fix = 0;
+        }
       }
      }    
   }
 }
- 
+
+let textWord;
 for (let key of resultMorseTable) {
-  console.log(key)
+  console.log(obj[key.join('')])
+  // console.log(textWord += obj[key.join('')])
 }
 
-  
 
-  //delete resultMorseTable[val];
-  // console.log(resultMorseTable)
+
+
+
+
 
   // console.log(MORSE_TABLE[`${resultMorseTable.join("")}`])
   // console.log(resultKey.join("").trim(""));
