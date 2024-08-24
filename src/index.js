@@ -60,7 +60,7 @@ function decode(expr) {
     } else if (key === "11") {
       resultTwo.push("-");
     } else if (key === "**") {
-      resultTwo.push("**");
+      resultTwo.push("$");
     }
   }
 
@@ -75,21 +75,17 @@ for (let j = 0; j < 10; j++) {
     for (let i = 0; i < key.length; i++) {
       if (key[i] === '00') {
         key.splice(i, 1);
-      } else if (key[i] === '**') {
-        fix += 1;
-        key.splice(i, 1);
-        if (fix === 5) {
-          key.splice(i, 1, ' ');
-          fix = 0;
-        }
-      }
+      } 
      }    
   }
 }
 
 let textWord;
 for (let key of resultMorseTable) {
-  console.log(obj[key.join('')])
+  if (key === '$$$$$') {
+    console.log('daaaaaaa')
+  }
+  // console.log(key.join(''))
   // console.log(textWord += obj[key.join('')])
 }
 
