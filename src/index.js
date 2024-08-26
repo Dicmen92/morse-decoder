@@ -51,7 +51,6 @@ function decode(expr) {
     }
   }
 
-
   for (let key of resultKey) {
     if (key === "00") {
       resultTwo.push("00");
@@ -60,49 +59,38 @@ function decode(expr) {
     } else if (key === "11") {
       resultTwo.push("-");
     } else if (key === "**") {
-      resultTwo.push("$");
+      resultTwo.push(" ");
     }
   }
 
-  
   for (let i = 0; i <= Math.ceil(exprSize); i++) {
     resultMorseTable.push(resultTwo.slice(i * 5, i * 5 + 5));
   }
 
-let fix = 0;
-for (let j = 0; j < 10; j++) {
+  for (let j = 0; j < 10; j++) {
+    for (let key of resultMorseTable) {
+      for (let i = 0; i < key.length; i++) {
+        if (key[i] === "00") {
+          key.splice(i, 1);
+        }
+      }
+    }
+  }
+
+  let fixWord = "";
   for (let key of resultMorseTable) {
-    for (let i = 0; i < key.length; i++) {
-      if (key[i] === '00') {
-        key.splice(i, 1);
-      } 
-     }    
+    obj[key.join("")] ? (fixWord += obj[key.join("")]) : (fixWord += " ");
   }
-}
 
-for (let key of resultMorseTable) {
-  if (key.join('') === '$$$$$') {    
-    console.log('daaaaaaa')
-  }
-  // console.log(key.join(''))
-  // console.log(textWord += obj[key.join('')])
-}
-
-
-
-
-
-
-
-  // console.log(MORSE_TABLE[`${resultMorseTable.join("")}`])
-  // console.log(resultKey.join("").trim(""));
+  return fixWord;
 }
 
 module.exports = {
   decode,
 };
 
-const expr = "0000101010000000101100101010110000000010**********00000011110000000010"
+const expr =
+  "0000101010000000101100101010110000000010**********00000011110000000010";
 decode(expr);
 
 // const expr = "0000101010000000101100101010110000000010**********00000011110000000010";
